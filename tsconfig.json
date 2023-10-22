@@ -1,0 +1,5 @@
+{
+  "extends": "expo/tsconfig.base",
+  "include": ["src/**/*.ts", "types/**/*.d.ts", "react-navigation.d.ts"], // Adjust the paths as needed
+  "compilerOptions": {}
+}
