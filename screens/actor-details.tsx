@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useRoute, useNavigation } from '@react-navigation/native';
+import { useDeviceProperties } from '../hooks';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { fetchPersonDetails, fetchPersonMovies } from '../routes';
 import { styled } from 'nativewind';
 import { ChevronLeftIcon, HeartIcon } from 'react-native-heroicons/outline';
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  Platform,
-  Dimensions,
-  ScrollView,
-} from 'react-native';
+import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { Loader } from '../components';
 import { Person } from '../types/types';
 import { image342 } from '../routes';
@@ -25,15 +18,13 @@ const StyledView = styled(View);
 const StyledText = styled(Text);
 const StyledImage = styled(Image);
 
-const ios = Platform.OS == 'ios';
-const verticalMargin = ios ? '' : ' my-3';
-var { width, height } = Dimensions.get('window');
-
 const ActorDetails = () => {
   const { params: item } = useRoute();
+  const navigation = useNavigation();
+  const { verticalMargin, height, width } = useDeviceProperties();
+
   const [loading, setLoading] = useState(false);
   const [isFavourite, toggleFavourite] = useState(false);
-  const navigation = useNavigation();
   const [person, setPerson] = useState<Person>();
   const [personMovies, setPersonMovies] = useState([]);
 

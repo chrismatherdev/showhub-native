@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
-import Navbar from '../components/navbar';
 import { styled } from 'nativewind';
 import { MOVIE_ROUTES, TV_ROUTES, ShowResultType } from '../routes';
 import { ShowCard } from '../components/carousel';
 import { useNavigation } from '@react-navigation/native';
-import Menu from '../components/menu';
-import { Loader } from '../components';
+import { Menu, Loader, Navbar } from '../components';
 import { useMenu } from '../hooks';
 import { useRoute } from '@react-navigation/native';
-// import TvDetails from './tv-details';
 
 const StyledView = styled(View);
 
@@ -33,12 +30,9 @@ const AllShows = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const itemsPerPage = 10;
-  //   const { shows } = useShow();
   const navigation = useNavigation();
   const [shows, setShows] = useState<ShowResultType[]>([]);
   const { isMenuVisible, setMenuVisible } = useMenu();
-
-  console.log(showType, 'showType!!!');
 
   const handleFilterChange = (newFilter: string) => {
     if (newFilter) {
@@ -85,7 +79,6 @@ const AllShows = () => {
   const ROUTES = showType === 'movies' ? MOVIE_ROUTES : showType === 'tv' ? TV_ROUTES : [];
 
   async function fetchShows() {
-    console.log(ROUTES, 'routes');
     setLoading(true);
     try {
       const responses = await axios.all(ROUTES.map((route) => axios.get(route)));

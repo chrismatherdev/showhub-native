@@ -4,20 +4,21 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
   Image,
-  Dimensions,
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { useDeviceProperties } from '../hooks';
 import { image185 } from '../routes';
 import { styled } from 'nativewind';
-const { width, height } = Dimensions.get('window');
+
+const StyledView = styled(View);
+const StyledText = styled(Text);
+const StyledImage = styled(Image);
 
 export default function SimilarList({ title, hideSeeAll, data, type }) {
   const navigation = useNavigation();
-  const StyledView = styled(View);
-  const StyledText = styled(Text);
-  const StyledImage = styled(Image);
+  const { width, height } = useDeviceProperties();
 
   return (
     <StyledView className='mb-2 border border-gray-800 rounded-md p-4 my-6 bg-dark-700'>
@@ -38,7 +39,6 @@ export default function SimilarList({ title, hideSeeAll, data, type }) {
         {data.map((item, index) => {
           const titleProperty = type === 'movie' ? 'title' : 'original_name';
 
-          // Access the property dynamically
           const truncatedTitle =
             item[titleProperty].length > 14
               ? item[titleProperty].substring(0, 14) + '...'

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView, ScrollView, Text, TouchableOpacity, View, Image } from 'react-native';
-import { fetchSimilarTv, fetchTvDetails, fetchTvCredits } from '../routes';
+import { fetchSimilarTv, fetchTvDetails, fetchTvCredits, ShowResultType } from '../routes';
 import { ChevronLeftIcon, HeartIcon } from 'react-native-heroicons/outline';
 import { styled } from 'nativewind';
 import { HeartIcon as HeartIconSolid } from 'react-native-heroicons/solid';
 import { useRoute, useNavigation } from '@react-navigation/native';
-import SimilarList from '../components/similar-list';
-import ShowCast from '../components/show-cast';
+import { ShowCast, SimilarList } from '../components';
 import { SimilarTv, Details } from '../types/types';
 import { useDeviceProperties } from '../hooks';
 import { styles } from '../styles/styles';
@@ -28,21 +27,21 @@ const TvDetails = () => {
   const { topMargin } = useDeviceProperties();
   const imageUrl = `https://image.tmdb.org/t/p/w500${details?.poster_path}`;
 
-  const getTvDetails = async (item) => {
+  const getTvDetails = async (item: ShowResultType) => {
     const data = await fetchTvDetails(item.id);
     if (data) {
       setDetails({ ...details, ...data });
     }
   };
 
-  const getTvCast = async (item) => {
+  const getTvCast = async (item: ShowResultType) => {
     const data = await fetchTvCredits(item.id);
     if (data && data.cast) {
       setCast(data.cast);
     }
   };
 
-  const getSimilarTv = async (item) => {
+  const getSimilarTv = async (item: ShowResultType) => {
     const data = await fetchSimilarTv(item.id);
     if (data && data.results) {
       setSimilar(data.results);

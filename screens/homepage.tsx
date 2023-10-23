@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ScrollView, View } from 'react-native';
 import { styled } from 'nativewind';
-import { Carousel, Navbar, Footer, Menu, Hero, Loader } from '../components';
+import { Carousel, Footer, Hero, Loader, Menu, Navbar } from '../components';
 import { HOMEPAGE_ROUTES } from '../routes';
 import { useMenu } from '../hooks';
 

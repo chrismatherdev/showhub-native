@@ -49,7 +49,7 @@ const Search = () => {
         <View style={{ marginBottom: 20 }}>
           <Navbar setMenuVisible={setMenuVisible} />
         </View>
-        {/* search input */}
+
         <StyledView className='mx-4 mb-3 flex-row justify-between items-center border border-neutral-700 rounded-full'>
           <StyledTextInput
             onChangeText={handleTextDebounce}
@@ -62,7 +62,6 @@ const Search = () => {
           </StyledTouchableOpacity>
         </StyledView>
 
-        {/* search results */}
         {loading ? (
           <Text>Loading...</Text>
         ) : results.length > 0 ? (
@@ -89,7 +88,6 @@ const Search = () => {
                       item={show}
                       isCarousel={false}
                       handleClick={(item) => {
-                        // Handle click logic here
                         navigation.navigate('MovieDetails' as never, item as never);
                       }}
                     />

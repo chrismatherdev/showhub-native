@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, ScrollView, Text, TouchableOpacity, View, Image } from 'react-native';
 import { fetchMovieDetails, fetchMovieCredits, fetchSimilarMovies } from '../routes';
-import Loader from '../components/loader';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { useDeviceProperties } from '../hooks';
 import { styled } from 'nativewind';
 import { ChevronLeftIcon, HeartIcon } from 'react-native-heroicons/outline';
 import { HeartIcon as HeartIconSolid } from 'react-native-heroicons/solid';
-import ShowCast from '../components/show-cast';
-import SimilarList from '../components/similar-list';
+import { Loader, ShowCast, SimilarList } from '../components';
 import { SimilarMovie, ShowDetails } from '../types/types';
 import { styles } from '../styles/styles';
 
@@ -20,9 +18,10 @@ const StyledText = styled(Text);
 
 const MovieDetails = () => {
   const { params: item } = useRoute();
-  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
   const { topMargin } = useDeviceProperties();
+
+  const [loading, setLoading] = useState(false);
   const [details, setDetails] = useState<ShowDetails | null>(null);
   const [cast, setCast] = useState([]);
   const [similarShows, setSimilarShows] = useState<SimilarMovie[]>([]);

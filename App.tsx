@@ -2,7 +2,7 @@ import React, { StrictMode } from 'react';
 import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ActorDetails, AllShows, Homepage, Search, MovieDetails, TvDetails } from './screens';
+import { ActorDetails, AllShows, Homepage, MovieDetails, Search, TvDetails } from './screens';
 
 const Stack = createStackNavigator();
 

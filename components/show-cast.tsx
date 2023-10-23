@@ -1,16 +1,14 @@
-import { View, Text, ScrollView, TouchableOpacity, Image, Dimensions } from 'react-native';
 import React from 'react';
-// import { fallbackPersonImage, image185, image342 } from '../api/moviedb';
+import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { image185 } from '../routes';
-var { width, height } = Dimensions.get('window');
 import { styled } from 'nativewind';
 
-export default function ShowCast({ cast, navigation }) {
-  const StyledView = styled(View);
-  const StyledText = styled(Text);
-  const StyledTouchableOpacity = styled(TouchableOpacity);
-  const StyledImage = styled(Image);
+const StyledView = styled(View);
+const StyledText = styled(Text);
+const StyledTouchableOpacity = styled(TouchableOpacity);
+const StyledImage = styled(Image);
 
+export default function ShowCast({ cast, navigation }) {
   return (
     <StyledView className='mb-2 border border-gray-800 rounded-md p-2 my-6'>
       <StyledText className='text-white font-bold text-lg mx-4 mb-3'>Top Cast</StyledText>
@@ -30,7 +28,6 @@ export default function ShowCast({ cast, navigation }) {
                 <StyledView className='overflow-hidden rounded-full h-20 w-20 items-center border border-neutral-500'>
                   <StyledImage
                     className='rounded-2xl h-24 w-20'
-                    // source={require('../assets/images/castImage1.png')}
                     source={{ uri: actor?.profile_path && image185(actor.profile_path) }}
                   />
                 </StyledView>
